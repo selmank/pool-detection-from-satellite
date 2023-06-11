@@ -36,7 +36,7 @@ We can choose optimal kernel for dilation ,i tried different one and dedicated t
     # Perform dilation operation
     dilation = cv2.dilate(thresh, kernel, iterations = 1)
 
- dilation:
+
 
 We can also use closing ,that is used to fill gaps and smooth boundaries of objects in binary images 
 
@@ -50,7 +50,28 @@ We can also change kernel but i choose to use this:
     # Perform closing operation
     closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
 
-closing:
+
+For this part ,I used closing operation. I labeled regions and if they are greater than specific area(I decided to use area=13 after empirical results ) i drawed a dot at the centroid of the pools.
+
+
+This algorith works better but still there are some polls undetected because of the shadows.
+
+
+    # Apply connected-component labeling to identify regions
+    labels = measure.label(closing)
+
+
+    # Loop over each labeled region and draw a dot at its centroid
+    for region in measure.regionprops(labels):
+        for region in measure.regionprops(labels) :
+         area = region.area
+         if area > 13:
+         # Get centroid coordinates
+            y, x = region.centroid
+        # Draw dot at centroid on original image
+            cv2.circle(img, (int(x), int(y)), 5, (0, 0, 255), -1)
+    # Display the original image with centroids marked
+    cv2_imshow( img)
 
 
 
