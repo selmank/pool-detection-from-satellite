@@ -8,7 +8,7 @@ Since polls are blue and, it is better to work with blue band chanell so we can 
     
     visible_blue = src.read(3)
 
-![](C:\Users\selmank\Desktop\işte.png)
+![işte](C:\Users\selmank\Desktop\işte.png)
 
 Then,I graph the histogram values to select the threshold value for the bianry image so we can easly detect polls.
 
